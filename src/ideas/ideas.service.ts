@@ -1,15 +1,19 @@
+import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/prisma.service';
 
+@Injectable()
 export class IdeasService {
   constructor(private readonly prisma: PrismaService) {}
-  async create(createIdeaDto: Prisma.ideaCreateInput) {
-    return await this.prisma.idea.create({ data: createIdeaDto });
+  async create(createIdea: Prisma.ideaCreateInput) {
+    return await this.prisma.idea.create({ data: createIdea });
   }
 
-  async findAll() {
-    return await this.prisma.idea.findMany();
-  }
+  findAll = async () => {
+    const data = await this.prisma.idea.findMany();
+    console.log({ data });
+    return data;
+  };
 
   async findOne(id: string) {
     return await this.prisma.idea.findUnique({ where: { id } });

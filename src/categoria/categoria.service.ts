@@ -1,14 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { CreateCategoriaDto } from './dto/create-categoria.dto';
-import { UpdateCategoriaDto } from './dto/update-categoria.dto';
 import { PrismaService } from 'src/prisma.service';
 import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class CategoriaService {
   constructor(private readonly prisma: PrismaService) {}
-  async create(createCategoriaDto: Prisma.categoriaCreateInput) {
-    return await this.prisma.categoria.create({ data: createCategoriaDto });
+  async create(createCategoria: Prisma.categoriaCreateInput) {
+    return await this.prisma.categoria.create({ data: createCategoria });
   }
 
   async findAll() {
@@ -16,13 +14,17 @@ export class CategoriaService {
   }
 
   async findOne(id: string) {
-    return await this.prisma.categoria.findUnique({ where: { id } });
+    const user = await this.prisma.categoria.findUnique({ where: { id } });
+    if (!user) {
+      throw new Error(`Categoria with id: ${id} not found`);
+    }
+    return user;
   }
 
-  async update(id: string, updateCategoriaDto: UpdateCategoriaDto) {
+  async update(id: string, updateCategoria: Prisma.categoriaUpdateInput) {
     return await this.prisma.categoria.update({
       where: { id },
-      data: updateCategoriaDto,
+      data: updateCategoria,
     });
   }
 

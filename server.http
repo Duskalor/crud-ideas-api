@@ -1,0 +1,28 @@
+
+GET http://localhost:3000/
+
+
+###
+GET http://localhost:3000/seed
+
+###
+DELETE  http://localhost:3000/deleteSeed
+
+
+###
+GET http://localhost:3000/categoria
+###
+
+GET http://localhost:3000/ideas
+
+
+###
+POST http://localhost:3000/ideas
+Content-Type : application/json
+
+{
+  "titulo"    :    "Aprende Angular",
+  "descripcion"  : "es un Framework de JavaScript",
+  "categoriaId"  : "03cc06f4-1c69-458d-a7ef-3065b96ecb2a"
+  
+}
