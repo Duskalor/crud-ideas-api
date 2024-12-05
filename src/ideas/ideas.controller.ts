@@ -23,11 +23,15 @@ export class IdeasController {
   findAll() {
     return this.ideasService.findAll();
   }
-
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.ideasService.findOne(id);
+  findAllById(@Param('id') id: string) {
+    return this.ideasService.findAllById(id);
   }
+
+  // @Get(':id')
+  // findOne(@Param('id') id: string) {
+  //   return this.ideasService.findOne(id);
+  // }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateIdea: Prisma.ideaUpdateInput) {

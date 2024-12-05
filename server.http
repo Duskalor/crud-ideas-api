@@ -26,3 +26,7 @@ Content-Type : application/json
   "categoriaId"  : "03cc06f4-1c69-458d-a7ef-3065b96ecb2a"
   
 }
+
+
+###
+GET http://localhost:3000/ideas/1c63292b-7a10-4887-afe7-c058a82e20cf

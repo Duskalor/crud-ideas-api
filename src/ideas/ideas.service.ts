@@ -14,6 +14,13 @@ export class IdeasService {
     console.log({ data });
     return data;
   };
+  findAllById = async (id: string) => {
+    const data = await this.prisma.idea.findMany({
+      where: { categoriaId: id },
+    });
+    console.log({ data });
+    return data;
+  };
 
   async findOne(id: string) {
     return await this.prisma.idea.findUnique({ where: { id } });
