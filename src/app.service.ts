@@ -11,7 +11,6 @@ export class AppService {
 
   seed = async () => {
     const categoriasDB = await this.prisma.categoria.findMany();
-    console.log(categoriasDB);
     if (categoriasDB.length === 0) {
       await this.prisma.categoria.createMany({ data: categorias });
       const newCategorias = await this.prisma.categoria.findMany();
