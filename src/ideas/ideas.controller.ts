@@ -28,10 +28,10 @@ export class IdeasController {
     return this.ideasService.findAllById(id);
   }
 
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.ideasService.findOne(id);
-  // }
+  @Post(':id')
+  findOne(@Param('id') id: string) {
+    return this.ideasService.changeCompleted(id);
+  }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateIdea: Prisma.ideaUpdateInput) {

@@ -36,4 +36,16 @@ export class IdeasService {
   async remove(id: string) {
     return this.prisma.idea.delete({ where: { id } });
   }
+
+  async changeCompleted(id: string) {
+    const idea = await this.prisma.idea.findFirst({ where: { id } });
+    if (!idea) return;
+    const newIdea = { ...idea, completado: !idea.completado };
+    return await this.prisma.idea.update({
+      data: newIdea,
+      where: {
+        id,
+      },
+    });
+  }
 }

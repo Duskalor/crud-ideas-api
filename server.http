@@ -29,4 +29,4 @@ Content-Type : application/json
 
 
 ###
-GET http://localhost:3000/ideas/1c63292b-7a10-4887-afe7-c058a82e20cf
+POST http://localhost:3000/ideas/ad2be3a7-c49b-4277-aa45-eb4b5e004b61
