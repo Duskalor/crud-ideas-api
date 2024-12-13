@@ -10,7 +10,9 @@ export class CategoriaService {
   }
 
   async findAll() {
-    return await this.prisma.categoria.findMany();
+    const data = await this.prisma.categoria.findMany();
+    console.log(data);
+    return data;
   }
 
   async findOne(id: string) {

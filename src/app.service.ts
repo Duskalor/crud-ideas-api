@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from './prisma.service';
 import { categorias, ideas } from 'seed';
 
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 @Injectable()
 export class AppService {
   constructor(private readonly prisma: PrismaService) {}
@@ -12,10 +13,15 @@ export class AppService {
   seed = async () => {
     const categoriasDB = await this.prisma.categoria.findMany();
     if (categoriasDB.length === 0) {
-      await this.prisma.categoria.createMany({ data: categorias });
+      // await this.prisma.categoria.createMany({ data: categorias });
+      for (const categoria of categorias) {
+        await delay(1000);
+        await this.prisma.categoria.create({ data: categoria });
+      }
+
       const newCategorias = await this.prisma.categoria.findMany();
 
-      const newIdeas = [...ideas, ...ideas, ...ideas].map((i) => ({
+      const newIdeas = ideas.map((i) => ({
         ...i,
         categoriaId:
           newCategorias[Math.floor(Math.random() * newCategorias.length)].id,
